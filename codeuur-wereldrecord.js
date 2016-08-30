@@ -34,7 +34,7 @@ function updateAmountOfSubmissions(count) {
   amountOfSubmissions = amountOfSubmissions + count;
   if (throttle != null) clearTimeout(throttle);
   throttle = setTimeout(function() {
-    document.getElementById('counter').innerText = amountOfSubmissions + ' inzendingen binnen!';
+    document.getElementById('counter').innerText = 'al ' + amountOfSubmissions + ' inzendingen binnen!';
   }, 10);
 }
 

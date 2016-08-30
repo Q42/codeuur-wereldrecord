@@ -1,8 +1,28 @@
 <html>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="codeuur-wereldrecord.js"></script>
+  </head>
   <body>
     <h1>CodeUur Wereldrecord</h1>
     <p>TODO Intro filmpje</p>
     <p><a href="https://scratch.mit.edu/projects/118197813/#editor">Open de scratch les</a></p>
     <p>TODO Lever je project in</p>
+
+    <form onsubmit="addSubmission(); return false;">
+      <h2>Ik heb meegedaan!</h2>
+      <div>
+        <label for="naam">Naam</label>
+        <input type="text" id="naam"></input>
+      </div>
+      <div>
+        <label for="school">School</label>
+        <input type="text" id="school"></input>
+      </div>
+      <div>
+        <input type="submit" />
+      </div>
+    </form>
+
   </body>
 </html>

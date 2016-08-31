@@ -25,10 +25,14 @@ var submissions = db.ref('/submissions')
 var throttle = null;
 amountOfSubmissions = 0;
 submissions.on('child_added', function(data) {
-  updateAmountOfSubmissions(data.names.filter(function(n) { return n.length > 0 }).length);
+  if (data.child('names').exists()) {
+    updateAmountOfSubmissions(data.child('names').val().filter(function(n) { return n.length > 0 }).length);
+  }
 });
 submissions.on('child_removed', function(data) {
-  updateAmountOfSubmissions(-data.names.filter(function(n) { return n.length > 0 }).length);
+  if (data.child('names').exists()) {
+    updateAmountOfSubmissions(-data.child('names').val().filter(function(n) { return n.length > 0 }).length);
+  }
 });
 function updateAmountOfSubmissions(count) {
   amountOfSubmissions = amountOfSubmissions + count;

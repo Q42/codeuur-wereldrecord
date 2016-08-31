@@ -3,7 +3,7 @@
 
 # Webserver draaien vanuit folder
 - open terminal in folder
-- `-m SimpleHTTPServer 8000`
+- `python -m SimpleHTTPServer 8000`
 
 # Sass watcher aanzetten
 - open terminal in folder

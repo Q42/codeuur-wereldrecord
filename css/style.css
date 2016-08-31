@@ -101,6 +101,8 @@ header {
       font-weight: 700; }
       header nav a:not(:last-child) {
         border-right: 1px solid #1978d4; }
+      header nav a:hover {
+        color: #fff; }
 
 #intro {
   background-image: url(/img/codeuurrecordheader.jpg);

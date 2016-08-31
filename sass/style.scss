@@ -131,6 +131,9 @@ header {
       &:not(:last-child) {
         border-right: 1px solid #1978d4;
       }
+      &:hover {
+        color: #fff;
+      }
     }
   }
 

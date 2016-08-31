@@ -139,8 +139,135 @@ header {
 
 }
 
+.studentcount {
+
+  background: #2ecc71;
+
+  @media (max-width: 600px) {
+    p {
+      color: #fff;
+      font-weight: 700;
+      background: #2ecc71;
+      padding: 10px;
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 600px) {
+
+    position: absolute;
+    top: 2.5em;
+    right: 5em;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    height: 5em;
+    width: 5em;
+
+
+    &:before,
+    &:after,
+    .price,
+    .price:before,
+    .price:after {
+      height: 5em;
+      width: 5em;
+      background: #2ecc71;
+    }
+
+    &:before,
+    &:after,
+    .price:before,
+    .price:after {
+    	content: "";
+    	position: absolute;
+    }
+
+    &:before {
+      top: 0;
+      left: 0;
+      -webkit-transform: rotate(-30deg);
+      -moz-transform: rotate(-30deg);
+      -ms-transform: rotate(-30deg);
+      transform: rotate(-30deg);
+    }
+
+    &:after {
+      top: 0;
+      left: 0;
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+      transform: rotate(-15deg);
+    }
+
+    .price {
+    	padding: 0.5em 0em;
+    	height: 5em;
+    	position: absolute;
+    	bottom: 0;
+    	right: 0;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    	z-index: 1;
+    	color: #fff;
+      &:before {
+      	top: 0;
+      	left: 0;
+        -webkit-transform: rotate(60deg);
+        -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+        transform: rotate(60deg);
+      }
+
+      &:after {
+      	top: 0;
+      	left: 0;
+        -webkit-transform: rotate(75deg);
+        -moz-transform: rotate(75deg);
+        -ms-transform: rotate(75deg);
+        transform: rotate(75deg);
+      }
+    }
+
+    p {
+      position: relative;
+      line-height: 1.6rem;
+      font-size: 1.3rem;
+      margin-top: -0.5rem;
+      z-index: 100;
+      display: block;
+      text-align: center;
+      text-transform: uppercase;
+      -webkit-transform: rotate(12deg);
+      -moz-transform: rotate(12deg);
+      -ms-transform: rotate(12deg);
+      transform: rotate(12deg);
+
+      span {
+        display: inline-block;
+        width: 100%;
+        line-height: 2rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+    }
+
+
+    }
+
+
+}
+
+
 #intro {
-  background-image: url(/img/codeuurrecordheader.jpg);
+  background-image: url(/img/olifanten.jpg);
   min-height: 350px;
 }
 

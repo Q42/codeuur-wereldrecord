@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" >
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="codeuur-wereldrecord.js"></script>
   </head>
   <body>
 
@@ -31,6 +33,7 @@
       <section id="intro" class="photo">
         <div class="container">
           <h1>Wereldrecord programmeerles</h1>
+          <h1 id="counter"></h1>
         </div>
       </section>
       <section class="light">
@@ -65,21 +68,21 @@
             Laat weten dat je hebt meegedaan door de namen van jouw groepje en de naam van jouw school hieronder in te vullen.
           </p>
 
-          <form class="student-form">
+          <form onsubmit="addSubmission(); return false;">
             <div class="form-group">
-              <label>Jullie namen</label>
-              <input type="text" placeholder="Naam 1" />
-              <input type="text" placeholder="Naam 2 (optioneel)" />
-              <input type="text" placeholder="Naam 3 (optioneel)" />
+              <label for="naam">Naam</label>
+              <input type="text" id="naam"></input>
             </div>
             <div class="form-group">
-              <label>Naam van jouw school</label>
-              <input type="text" placeholder="Schoolnaam" />
+              <label for="school">School</label>
+              <input type="text" id="school"></input>
             </div>
             <div class="form-group">
-              <input type="submit" value="Verstuur" class="cta wide">
+              <input type="submit" value="Verstuur" class="cta wide" />
             </div>
           </form>
+
+
         </div>
       </section>
     </main>

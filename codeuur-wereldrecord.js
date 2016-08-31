@@ -25,10 +25,10 @@ var submissions = db.ref('/submissions')
 var throttle = null;
 amountOfSubmissions = 0;
 submissions.on('child_added', function(data) {
-  updateAmountOfSubmissions(1);
+  updateAmountOfSubmissions(data.names.filter(function(n) { return n.length > 0 }).length);
 });
 submissions.on('child_removed', function(data) {
-  updateAmountOfSubmissions(-1);
+  updateAmountOfSubmissions(-data.names.filter(function(n) { return n.length > 0 }).length);
 });
 function updateAmountOfSubmissions(count) {
   amountOfSubmissions = amountOfSubmissions + count;
@@ -44,7 +44,11 @@ addSubmission = function() {
   console.log('adding submission');
   submissions.push({
     date: new Date().getTime(),
-    name: document.getElementById('naam').value,
+    names: [
+      document.getElementById('naam_1').value,
+      document.getElementById('naam_2').value,
+      document.getElementById('naam_3').value
+    ],
     school: document.getElementById('school').value
   });
 }

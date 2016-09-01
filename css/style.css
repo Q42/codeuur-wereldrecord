@@ -260,6 +260,9 @@ li {
   width: 100%;
   height: 100%; }
 
+.hidden {
+  display: none; }
+
 footer {
   padding: 20px 0; }
   footer .section-header {
@@ -1169,7 +1172,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 @-ms-viewport {
   width: device-width; }
-
 .visible-xs,
 .visible-sm,
 .visible-md,
@@ -1327,3 +1329,5 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+/*# sourceMappingURL=style.css.map */

@@ -47,6 +47,10 @@ function updateAmountOfSubmissions(count) {
 
 addSubmission = function() {
   console.log('adding submission');
+
+  document.getElementById('studentform').className = "hidden";
+  document.getElementById('studentthanksform').className = "";
+
   submissions.push({
     date: new Date().getTime(),
     names: [

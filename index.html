@@ -105,31 +105,40 @@
         <div class="container">
           <div class="col-sm-12">
             <h1 class="section-header" id="ik-heb-meegedaan">Ik heb meegedaan!</h1>
-            <p>
-              Laat weten dat je hebt meegedaan door de namen van jouw groepje en de naam van jouw school hieronder in te vullen.
-            </p>
 
-            <form onsubmit="addSubmission(); return false;">
-              <div class="form-group">
-                <label for="naam_1">Naam</label>
-                <input type="text" id="naam_1"></input>
-              </div>
-              <div class="form-group">
-                <label for="naam_2">Naam</label>
-                <input type="text" id="naam_2"></input>
-              </div>
-              <div class="form-group">
-                <label for="naam_3">Naam</label>
-                <input type="text" id="naam_3"></input>
-              </div>
-              <div class="form-group">
-                <label for="school">School</label>
-                <input type="text" id="school"></input>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Verstuur" class="cta wide" />
-              </div>
-            </form>
+            <div id="studentform">
+              <p>
+                Laat weten dat je hebt meegedaan door de namen van jouw groepje en de naam van jouw school hieronder in te vullen.
+              </p>
+
+              <form onsubmit="addSubmission(); return false;">
+                <div class="form-group">
+                  <label for="naam_1">Naam</label>
+                  <input type="text" id="naam_1"></input>
+                </div>
+                <div class="form-group">
+                  <label for="naam_2">Naam</label>
+                  <input type="text" id="naam_2"></input>
+                </div>
+                <div class="form-group">
+                  <label for="naam_3">Naam</label>
+                  <input type="text" id="naam_3"></input>
+                </div>
+                <div class="form-group">
+                  <label for="school">School</label>
+                  <input type="text" id="school"></input>
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Verstuur" class="cta wide" />
+                </div>
+              </form>
+            </div>
+            <div id="studentthanksform" class="hidden">
+              <p>
+                Bedankt voor het invullen!
+              </p>
+            </div>
+
 
           </div>
         </div>

@@ -39,6 +39,7 @@ function updateAmountOfSubmissions(count) {
   if (throttle != null) clearTimeout(throttle);
   throttle = setTimeout(function() {
     document.getElementById('counter').innerText = amountOfSubmissions;
+    document.getElementById('studentcount').style.display = 'block';
   }, 10);
 }
 

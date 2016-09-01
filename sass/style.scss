@@ -368,6 +368,9 @@ footer {
     background-color: transparent;
     font-size: 16px;
     text-align: left;
+    &:hover {
+      color: #fff;
+    }
   }
 
   .logo {
@@ -401,7 +404,12 @@ footer {
   }
 }
 
-input[type="email"], input[type="search"], input[type="text"], input[type="tel"], input[type="number"], input[type="password"], textarea, select {
+input[type="email"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="password"], textarea, select {
   border: 1px solid #D1D1D1;
   height: 36px;
   padding: 6px 10px;

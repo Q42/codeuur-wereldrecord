@@ -106,7 +106,8 @@ header {
 
 #studentcount {
   background: #2ecc71;
-  display: none; }
+  display: none;
+  z-index: 99; }
   @media (max-width: 600px) {
     #studentcount p {
       color: #fff;

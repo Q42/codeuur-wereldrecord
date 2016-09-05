@@ -35,7 +35,7 @@
       </div>
       <div id="studentcount">
         <div class="price">
-          <p><span id="counter"></span> kinderen hebben meegedaan</p>
+          <p><span id="counter"></span> kinderen doen al mee!</p>
         </div>
       </div>
 
@@ -56,24 +56,77 @@
       </section>
       <section class="light">
 
+
+        <div class="container">
+          <div class="col-sm-6">
+            <h1 class="section-header" id="ik-heb-meegedaan">Doe mee met de programmeerles!</h1>
+
+            <div id="studentform">
+              <p>Samen gaan we een wereldrecord halen.<br />
+                Daarvoor hebben we wel jullie namen nodig.<br />
+                Vul hieronder jullie namen, en de naam van jullie school.
+              </p>
+
+              <form onsubmit="addSubmission(); return false;">
+                <div class="form-group">
+                  <label for="school">Naam van jullie school</label>
+                  <input type="text" id="school"></input>
+                </div>
+                <div class="form-group">
+                  <label for="naam_1">Naam 1</label>
+                  <input type="text" id="naam_1"></input>
+                </div>
+                <div class="form-group">
+                  <label for="naam_2">Naam 2</label>
+                  <input type="text" id="naam_2"></input>
+                </div>
+                <div class="form-group">
+                  <label for="naam_3">Naam 3</label>
+                  <input type="text" id="naam_3"></input>
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Verstuur" class="cta wide" />
+                </div>
+              </form>
+            </div>
+            <div id="studentthanksform" class="hidden">
+              <p>
+                Bedankt voor het invullen! Nu kun je aan de slag.
+              </p>
+            </div>
+
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <h2 class="section-header">Voor docenten</h1>
+            <p>Om jullie te helpen deze les te geven, hebben we:</p>
+            <ul>
+              <li><a href="/docent.pdf">Aandachtspunten en tips</a></li>
+              <li><a href="/codeuur-wereldrecordles.pdf">Lesmateriaal</a></li>
+              <li>Laurens de Groot intro video (komt nog!)</li>
+              <li><a href="/film1">Scratch intro video</a></li>
+            </ul>
+            <p>Dank voor het meedoen, en veel plezier!</p>
+          </div>
+        </div>
+
         <div class="container">
           <div class="col-sm-12">
             <h1 class="section-header" id="aan-de-slag">Aan de slag!</h1>
             <p>
               <a href="https://scratch.mit.edu/projects/119535933/#editor" class="cta" target="_blank">Open de scratch les</a>
             </p>
-            <p>
-              Als je klaar bent, <a href="#ik-heb-meegedaan">laat ons dan nog even weten dat je hebt meegedaan</a>?
-            </p>
           </div>
         </div>
 
-
         <div class="container">
           <div class="col-sm-12">
-            <h1 class="section-header" id="de-les">De les</h1>
-            <h3 class="subtitle">Het materiaal dat gebruikt wordt tijdens de les</h3>
+            <h1 class="section-header" id="de-les">Het lesmateriaal</h1>
+            <h3 class="subtitle">Hier vind je alle filmpjes die je helpen tijdens de les</h3>
             <p><a href="http://wr.codeuur.nl/CodeUur-Wereldrecordles.pdf" target="_blank">Werkbladen</a> (pdf)</p>
+          </div>
+          <div class="col-sm-12">
+            <p>Hier komt nog een intro filmpje van Laurens de Groot</p>
           </div>
           <div class="col-sm-6">
             <div class="video-container">
@@ -95,53 +148,8 @@
               <iframe class="youtube" width="560" height="315" src="https://www.youtube.com/embed/Is--pKtmUYY" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
-
-          <div class="col-sm-12">
-            <p>TODO: intro filmpje van Laurens de Groot</p>
-          </div>
-
         </div>
 
-        <div class="container">
-          <div class="col-sm-12">
-            <h1 class="section-header" id="ik-heb-meegedaan">Ik heb meegedaan!</h1>
-
-            <div id="studentform">
-              <p>
-                Laat weten dat je hebt meegedaan door de namen van jouw groepje en de naam van jouw school hieronder in te vullen.
-              </p>
-
-              <form onsubmit="addSubmission(); return false;">
-                <div class="form-group">
-                  <label for="naam_1">Naam</label>
-                  <input type="text" id="naam_1"></input>
-                </div>
-                <div class="form-group">
-                  <label for="naam_2">Naam</label>
-                  <input type="text" id="naam_2"></input>
-                </div>
-                <div class="form-group">
-                  <label for="naam_3">Naam</label>
-                  <input type="text" id="naam_3"></input>
-                </div>
-                <div class="form-group">
-                  <label for="school">School</label>
-                  <input type="text" id="school"></input>
-                </div>
-                <div class="form-group">
-                  <input type="submit" value="Verstuur" class="cta wide" />
-                </div>
-              </form>
-            </div>
-            <div id="studentthanksform" class="hidden">
-              <p>
-                Bedankt voor het invullen!
-              </p>
-            </div>
-
-
-          </div>
-        </div>
       </section>
     </main>
 

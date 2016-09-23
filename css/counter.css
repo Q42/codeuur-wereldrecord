@@ -1,0 +1,22 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%
+}
+
+body {
+  font-family: Muli, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #737b88;
+  color: #737b88;
+  letter-spacing: 1px;
+}
+
+#counter {
+	font-size: 180px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}

@@ -7,14 +7,23 @@ body, html {
 body {
   font-family: Muli, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  color: #737b88;
-  color: #737b88;
+  font-size: 20px;
+  color: #3b3f45;
   letter-spacing: 1px;
 }
 
+#world {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #counter {
-	font-size: 180px;
+	font-size: 250px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

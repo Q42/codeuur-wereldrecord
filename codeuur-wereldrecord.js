@@ -34,3 +34,25 @@ addSubmission = function() {
     school: document.getElementById('school').value
   });
 }
+
+// counter for amount of submissions
+var throttle = null;
+amountOfSubmissions = 0;
+submissions.on('child_added', function(data) {
+  if (data.child('names').exists()) {
+    updateAmountOfSubmissions(data.child('names').val().filter(function(n) { return n.length > 0 }).length);
+  }
+});
+submissions.on('child_removed', function(data) {
+  if (data.child('names').exists()) {
+    updateAmountOfSubmissions(-data.child('names').val().filter(function(n) { return n.length > 0 }).length);
+  }
+});
+function updateAmountOfSubmissions(count) {
+  amountOfSubmissions = amountOfSubmissions + count;
+  if (throttle != null) clearTimeout(throttle);
+  throttle = setTimeout(function() {
+    document.getElementById('counter').innerText = amountOfSubmissions;
+    document.getElementById('studentcount').style.display = 'block';
+  }, 10);
+}

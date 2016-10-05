@@ -12,6 +12,7 @@ var submissions = db.ref('/submissions')
 var counterInitialDuration = 30;
 var counterSubsequentDuration = 1;
 var confettiStarted = false;
+var confettiOpacity = 0;
 
 var counter = new CountUp("counter", 0, 0, 0, counterInitialDuration, {
   useEasing : true,
@@ -30,11 +31,12 @@ counter.printValue = function(value) {
     var result = counter.formattingFn(value);
     counterElement.innerHTML = result;
 
-    if(value > 10000 && !confettiStarted) {
+    if(value > 10000) {  
       confettiStarted = true;
-      startConfetti();
     }
 };
+
+startConfetti();
 
 setTimeout(function(){
   counter.duration = counterSubsequentDuration * 1000;
@@ -65,7 +67,7 @@ function updateAmountOfSubmissions(count) {
 function startConfetti() {
   var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
 
-  NUM_CONFETTI = 350;
+  NUM_CONFETTI = 200;
 
   COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
 
@@ -137,7 +139,8 @@ function startConfetti() {
       if (!((0 < (ref = this.x) && ref < this.xmax))) {
         this.x = (this.x + this.xmax) % this.xmax;
       }
-      return drawCircle(~~this.x, ~~this.y, this.r, this.rgb + "," + this.opacity + ")");
+
+      return drawCircle(~~this.x, ~~this.y, this.r, this.rgb + "," + Math.min(this.opacity, confettiOpacity) + ")");
     };
 
     return Confetti;
@@ -156,6 +159,11 @@ function startConfetti() {
   window.step = function() {
     var c, j, len, results;
     requestAnimationFrame(step);
+
+    if(confettiStarted && confettiOpacity < 1) {
+      confettiOpacity = Math.min(confettiOpacity + 0.01, 1);
+    }
+
     context.clearRect(0, 0, w, h);
     results = [];
     for (j = 0, len = confetti.length; j < len; j++) {

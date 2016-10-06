@@ -8,7 +8,7 @@ var config = {
 firebase.initializeApp(config);
 
 var db = firebase.database();
-var submissions = db.ref('/submissions')
+var counterRef = db.ref('/counter')
 var counterInitialDuration = 30;
 var counterSubsequentDuration = 1;
 var confettiStarted = false;
@@ -47,22 +47,9 @@ counter.start()
 // counter for amount of submissions
 amountOfSubmissions = 0;
 
-submissions.on('child_added', function(data) {
-  if (data.child('names').exists()) {
-    updateAmountOfSubmissions(data.child('names').val().filter(function(n) { return n.length > 0 }).length);
-  }
+counterRef.on('value', function(snapshot) {
+  counter.update(snapshot.val());
 });
-
-submissions.on('child_removed', function(data) {
-  if (data.child('names').exists()) {
-    updateAmountOfSubmissions(-data.child('names').val().filter(function(n) { return n.length > 0 }).length);
-  }
-});
-
-function updateAmountOfSubmissions(count) {
-  amountOfSubmissions = amountOfSubmissions + count * 80;
-  counter.update(amountOfSubmissions);
-}
 
 function startConfetti() {
   var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;

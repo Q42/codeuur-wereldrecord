@@ -25,5 +25,6 @@ submissions.on('child_removed', function(data) {
 var amountOfSubmissions = 0;
 
 function updateAmountOfSubmissions(count) {
-  document.getElementById("counter").innerHTML = count
+  amountOfSubmissions += count;
+  document.getElementById("studentcount").innerHTML = amountOfSubmissions
 }

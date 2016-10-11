@@ -7,6 +7,11 @@ html {
   text-align: center;
 }
 
+.introframe {
+  border: none;
+  width: 100%;
+  height: 300px;
+}
 .partners-thumbs a {
   display: inline-block;
   height: 150px;

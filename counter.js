@@ -12,9 +12,10 @@ var counterRef = db.ref('/counter')
 var counterInitialDuration = 30;
 var counterSubsequentDuration = 1;
 var confettiStarted = false;
-var confettiOpacity = 0;
+var brokeWorldRecord = 10000;
+var deadline = new Date("2016-10-14 11:20:00");
 
-var counter = new CountUp("counter", 0, 0, 0, counterInitialDuration, {
+var counter = new CountUp("counteramount", 0, 0, 0, counterInitialDuration, {
   useEasing : true,
   easingFn: function (t, b, c, d) {
     var ts = (t /= d) * t;
@@ -26,139 +27,151 @@ var counter = new CountUp("counter", 0, 0, 0, counterInitialDuration, {
   decimal : ','
 });
 
-var counterElement = document.getElementById("counter")
+var counterElement = document.getElementById("counteramount");
+
 counter.printValue = function(value) {
     var result = counter.formattingFn(value);
     counterElement.innerHTML = result;
 
-    if(value > 10000) {  
+    if(value >= brokeWorldRecord && !confettiStarted) {  
+      startConfetti();
       confettiStarted = true;
     }
 };
 
-startConfetti();
-
-setTimeout(function(){
-  counter.duration = counterSubsequentDuration * 1000;
-}, counterInitialDuration * 1000);
-
-counter.start()
+counter.start();
 
 // counter for amount of submissions
 amountOfSubmissions = 0;
 
 counterRef.on('value', function(snapshot) {
+  if(snapshot.val() > 0) {
+    document.getElementById("announcement").style.display = "none";
+    document.getElementById("counter").style.display = "block";
+  } else {
+    document.getElementById("announcement").style.display = "block";
+    document.getElementById("counter").style.display = "none";
+  }
+
   counter.update(snapshot.val());
 });
 
+//////////////////
+// Countdown
+//////////////////
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+    var time = ('0' + t.hours).slice(-2) + "<small>:</small>" +
+                      ('0' + t.minutes).slice(-2) + "<small>:</small>" +
+                      ('0' + t.seconds).slice(-2);
+
+    if(t.days > 0) {
+      clock.innerHTML = t.days + "<small>d</small> " + time; 
+    } else {
+      clock.innerHTML = time; 
+    }
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+initializeClock('clockdiv', deadline);
+
+//////////////////
+// Confetti
+//////////////////
+var canvas = Confetti.createCanvas(
+  document.querySelector('div'),
+  document.querySelector('canvas')
+);
+
+var config = {
+  angle: 0.011,
+  tiltAngle: 0.1,
+  draw: draw,
+  updatePosition: updatePosition,
+  updateState: updateState
+};
+
+
+var particles = new Array(500);
+for (var i = 0; i < particles.length; i++) {
+  particles[i] = Confetti.create({
+    x: Confetti.randomFrom(0, canvas.width),
+    y: 0,
+    r: Confetti.randomFrom(5, 50),
+    tilt: Confetti.randomFrom(-10, 0),
+    tiltAngle: 0,
+    tiltAngleIncrement: Confetti.randomFrom(0.05, 0.12, 100)
+  });
+}
+
 function startConfetti() {
-  var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
+  canvas.step(particles, config)();  
+}
 
-  NUM_CONFETTI = 200;
+function draw(confetti) {
+  canvas.context.beginPath();
+  canvas.context.globalAlpha=1;
+  canvas.context.lineWidth = confetti.r / 2;
+  canvas.context.strokeStyle = confetti.color;
+  canvas.context.moveTo(confetti.x + confetti.tilt + (confetti.r / 4),
+    confetti.y);
+  canvas.context.lineTo(confetti.x + confetti.tilt, confetti.y +
+    confetti.tilt + (confetti.r / 4));
+  canvas.context.stroke();
+}
 
-  COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
+function updatePosition(confetti, idx) {
+  confetti.tiltAngle += confetti.tiltAngleIncrement;
+  confetti.y += (Math.cos(config.angle + confetti.d) + 1 + confetti.r / 2) / 2;
+  confetti.x += Math.sin(config.angle);
+  confetti.tilt = 15 * Math.sin(confetti.tiltAngle - idx / 3);
 
-  PI_2 = 2 * Math.PI;
+  if (confetti.isFlakeExiting(canvas)) {
+    if (idx % 5 > 0 || idx % 2 === 0) {
+      confetti.x = Confetti.randomFrom(0, canvas.width);
+      confetti.y = -10;
+      confetti.tilt = Confetti.randomFrom(-10, 0);
 
-  canvas = document.getElementById("world");
-
-  context = canvas.getContext("2d");
-
-  window.w = canvas.width = window.innerWidth;
-
-  window.h = canvas.height = window.innerHeight;
-
-  range = function(a, b) {
-    return (b - a) * Math.random() + a;
-  };
-
-  drawCircle = function(x, y, r, style) {
-    context.beginPath();
-    context.arc(x, y, r, 0, PI_2, false);
-    context.fillStyle = style;
-    return context.fill();
-  };
-
-  xpos = 0.5;
-
-  document.onmousemove = function(e) {
-    return xpos = e.pageX / w;
-  };
-
-  window.requestAnimationFrame = (function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
-      return window.setTimeout(callback, 1000 / 60);
-    };
-  })();
-
-  Confetti = (function() {
-    function Confetti() {
-      this.style = COLORS[~~range(0, 5)];
-      this.rgb = "rgba(" + this.style[0] + "," + this.style[1] + "," + this.style[2];
-      this.r = ~~range(10, 20);
-      this.r2 = 2 * this.r;
-      this.replace();
-    }
-
-    Confetti.prototype.replace = function() {
-      this.opacity = 0;
-      this.dop = 0.03 * range(1, 4);
-      this.x = range(-this.r2, w - this.r2);
-      this.y = range(-20, h - this.r2);
-      this.xmax = w - this.r;
-      this.ymax = h - this.r;
-      this.vx = range(0, 2) + 8 * xpos - 5;
-      return this.vy = 0.7 * this.r + range(-1, 1);
-    };
-
-    Confetti.prototype.draw = function() {
-      var ref;
-      this.x += this.vx;
-      this.y += this.vy;
-      this.opacity += this.dop;
-      if (this.opacity > 1) {
-        this.opacity = 1;
-        this.dop *= -1;
+    } else {
+      if (Math.sin(config.angle) > 0) {
+        confetti.x = -5;
+        confetti.y = Confetti.randomFrom(0, canvas.height);
+        confetti.tilt = Confetti.randomFrom(-10, 0);
+      } else {
+        confetti.x = canvas.width + 5;
+        confetti.y = Confetti.randomFrom(0, canvas.height);
+        confetti.tilt = Confetti.randomFrom(-10, 0);
       }
-      if (this.opacity < 0 || this.y > this.ymax) {
-        this.replace();
-      }
-      if (!((0 < (ref = this.x) && ref < this.xmax))) {
-        this.x = (this.x + this.xmax) % this.xmax;
-      }
-
-      return drawCircle(~~this.x, ~~this.y, this.r, this.rgb + "," + Math.min(this.opacity, confettiOpacity) + ")");
-    };
-
-    return Confetti;
-
-  })();
-
-  confetti = (function() {
-    var j, ref, results;
-    results = [];
-    for (i = j = 1, ref = NUM_CONFETTI; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-      results.push(new Confetti);
     }
-    return results;
-  })();
+  }
+}
 
-  window.step = function() {
-    var c, j, len, results;
-    requestAnimationFrame(step);
-
-    if(confettiStarted && confettiOpacity < 1) {
-      confettiOpacity = Math.min(confettiOpacity + 0.01, 1);
-    }
-
-    context.clearRect(0, 0, w, h);
-    results = [];
-    for (j = 0, len = confetti.length; j < len; j++) {
-      c = confetti[j];
-      results.push(c.draw());
-    }
-    return results;
-  };
-
-  step();
+function updateState() {
+  this.angle += 0.01;
+  this.tiltAngle += 0.1;
 }

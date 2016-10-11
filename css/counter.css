@@ -13,7 +13,7 @@ body {
   letter-spacing: 1px;
 }
 
-#world {
+#confetti, #confetticanvas {
   position: absolute;
   top: 0;
   right: 0;
@@ -21,29 +21,39 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
+  z-index: 100;
 }
 
 #counter {
-	font-size: 290px;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
   font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
+	display: none;
+  text-align: center;
+}
+#counteramount {
+  font-size: 290px;
 }
 #announcement {
   position: absolute;
-  top: 0;
+  top: 40%;
   left: 0;
   right: 0;
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
   display: none;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  text-align: center;
+  padding-right: 60px;
+  padding-left: 60px;
 }
+#announcement h2 {
+  margin: 0 0 20px 0;
+  padding: 0;
+  font-weight: 300;
+  text-align: center;
+  font-size: 50px;
+}
+
 .logo {
   position: absolute;
   top: 100px;
@@ -68,4 +78,67 @@ body {
   font-weight: bold;
   font-size: 5rem;
   margin: 0;
+}
+
+.small .logo {
+  display: none;
+}
+.small #counter {
+  top: 30px;
+}
+.small #kids {
+  font-size: 30px;
+}
+.small #counteramount {
+  font-size: 150px;
+}
+.small #announcement {
+  top: 62px;
+}
+#clockdiv {
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  font-size: 100px;
+  border-radius: 3px;
+  background: #fff;
+  color: #0f8cd7;
+  padding: 10px 30px;
+}
+#clockdiv small {
+  padding: 0 10px;
+  color: #ddd;
+  font-size: 100px;
+}
+.smalltext {
+  padding-top: 5px;
+  font-size: 16px;
+}
+.photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  background-image: url(/img/olifanten.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.small #announcement h2 {
+  font-size: 30px;
+}
+.small #clockdiv {
+  font-size: 50px;
+  padding: 5px 15px;
+}
+.small #clockdiv small {
+  font-size: 50px;
+  padding: 0 5px;
+}
+.small .photo {
+  opacity: 0.4;
 }

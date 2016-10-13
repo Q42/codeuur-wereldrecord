@@ -55,10 +55,10 @@ addSubmission = function() {
   var monthIndex = date.getMonth();
   var year = date.getFullYear();
 
-  if (year != 2016 || monthIndex != 9 || day != 14) {
-    alert('Met dit formulier geef je aan dat je aan het wereldrecord mee doet.\n\nDat kan alleen op 14 oktober! Kom vrijdag a.u.b. terug.');
-    return;
-  }
+  // if (year != 2016 || monthIndex != 9 || day != 14) {
+  //   alert('Met dit formulier geef je aan dat je aan het wereldrecord mee doet.\n\nDat kan alleen op 14 oktober! Kom vrijdag a.u.b. terug.');
+  //   return;
+  // }
 
   var schoolName = document.getElementById('school').value;
   var naamOne = document.getElementById('naam_1').value;

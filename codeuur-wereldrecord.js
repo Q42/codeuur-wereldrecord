@@ -11,12 +11,16 @@ var db = firebase.database();
 var submissions = db.ref('/submissions')
 
 function setCookie(cname, cvalue, exdays) {
+  try {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  } catch(err) {
+  }
 }
 function getCookie(cname) {
+  try {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i = 0; i <ca.length; i++) {
@@ -29,6 +33,9 @@ function getCookie(cname) {
         }
     }
     return "";
+  } catch(err) {
+    return "";
+  }
 }
 function S4() {
     return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
@@ -41,7 +48,7 @@ if (!getCookie('guid')) {
 }
 
 addSubmission = function() {
-  console.log('adding submission');
+  // console.log('adding submission');
 
   var date = new Date();
   var day = date.getDate();

@@ -13,7 +13,7 @@ var counterInitialDuration = 30;
 var counterSubsequentDuration = 1;
 var confettiStarted = false;
 var brokeWorldRecord = 10000;
-var deadline = new Date("2016-10-14 11:20:00");
+var deadline = new Date("2016-10-14T11:20:00+02:00");
 
 var counter = new CountUp("counteramount", 0, 0, 0, counterInitialDuration, {
   useEasing : true,

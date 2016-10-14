@@ -9,7 +9,7 @@ firebase.initializeApp(config);
 
 var db = firebase.database();
 var counterRef = db.ref('/counter')
-var counterInitialDuration = 30;
+var counterInitialDuration = 5;
 var counterSubsequentDuration = 1;
 var confettiStarted = false;
 var brokeWorldRecord = 10000;

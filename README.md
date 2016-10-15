@@ -1,5 +1,5 @@
 # CodeUur Wereldrecord
-14 oktober 2016 hebben 11.386 kinderen tegelijkertijd een CodeUur gekregen!
+14 oktober 2016 hebben 11.368 kinderen tegelijkertijd een CodeUur gekregen!
 
 Dit is de code van de website waar het lesmateriaal op stond.
 Hier konden kinderen zich ook inschrijven om mee te tellen.

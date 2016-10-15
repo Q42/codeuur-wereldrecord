@@ -1,21 +1,12 @@
 
-var config = {
-  apiKey: "AIzaSyDg2xwtEGR1FtS4OwLcsYdYZ2V2n7L1I60",
-  authDomain: "codeuur-wereldrecord.firebaseapp.com",
-  databaseURL: "https://codeuur-wereldrecord.firebaseio.com",
-  storageBucket: "codeuur-wereldrecord.appspot.com",
-};
-firebase.initializeApp(config);
-
-var db = firebase.database();
-var counterRef = db.ref('/counter')
 var counterInitialDuration = 5;
 var counterSubsequentDuration = 1;
 var confettiStarted = false;
-var brokeWorldRecord = 10000;
+var brokeWorldRecord = 9782;
+var codeuurWrCounter = 11386;
 var deadline = new Date("2016-10-14T11:20:00+02:00");
 
-var counter = new CountUp("counteramount", 0, 0, 0, counterInitialDuration, {
+var counter = new CountUp("counteramount", 0, codeuurWrCounter, 0, counterInitialDuration, {
   useEasing : true,
   easingFn: function (t, b, c, d) {
     var ts = (t /= d) * t;
@@ -33,7 +24,7 @@ counter.printValue = function(value) {
     var result = counter.formattingFn(value);
     counterElement.innerHTML = result;
 
-    if(value >= brokeWorldRecord && !confettiStarted) {  
+    if(value >= brokeWorldRecord && !confettiStarted) {
       startConfetti();
       confettiStarted = true;
     }
@@ -43,18 +34,6 @@ counter.start();
 
 // counter for amount of submissions
 amountOfSubmissions = 0;
-
-counterRef.on('value', function(snapshot) {
-  if(snapshot.val() > 0) {
-    document.getElementById("announcement").style.display = "none";
-    document.getElementById("counter").style.display = "block";
-  } else {
-    document.getElementById("announcement").style.display = "block";
-    document.getElementById("counter").style.display = "none";
-  }
-
-  counter.update(snapshot.val());
-});
 
 //////////////////
 // Countdown
@@ -84,9 +63,9 @@ function initializeClock(id, endtime) {
                       ('0' + t.seconds).slice(-2);
 
     if(t.days > 0) {
-      clock.innerHTML = t.days + "<small>d</small> " + time; 
+      clock.innerHTML = t.days + "<small>d</small> " + time;
     } else {
-      clock.innerHTML = time; 
+      clock.innerHTML = time;
     }
 
     if (t.total <= 0) {
@@ -98,7 +77,9 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-initializeClock('clockdiv', deadline);
+if (document.getElementById('clockdiv')) {
+  initializeClock('clockdiv', deadline);
+}
 
 //////////////////
 // Confetti
@@ -130,7 +111,7 @@ for (var i = 0; i < particles.length; i++) {
 }
 
 function startConfetti() {
-  canvas.step(particles, config)();  
+  canvas.step(particles, config)();
 }
 
 function draw(confetti) {

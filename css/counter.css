@@ -30,7 +30,7 @@ body {
   left: 0;
   right: 0;
   font-weight: bold;
-	display: none;
+	display: block;
   text-align: center;
 }
 #counteramount {

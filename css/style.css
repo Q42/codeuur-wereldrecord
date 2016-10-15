@@ -1353,5 +1353,3 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 @media print {
   .hidden-print {
     display: none !important; } }
-
-/*# sourceMappingURL=style.css.map */

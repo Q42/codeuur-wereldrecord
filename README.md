@@ -5,6 +5,3 @@
 - open terminal in folder
 - `python -m SimpleHTTPServer 8000`
 
-# Sass watcher aanzetten
-- open terminal in folder
-- `sass --watch sass:css`

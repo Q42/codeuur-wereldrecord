@@ -12,13 +12,17 @@ var submissions = db.ref('/submissions')
 
 submissions.on('child_added', function(data) {
   if (data.child('names').exists()) {
-    updateAmountOfSubmissions(data.child('names').val().filter(function(n) { return n.length > 0 }).length);
+    var names = data.child('names').val();
+    var filledNames = names.filter(function(n) { return n.length > 0 });
+    updateAmountOfSubmissions(filledNames.length);
   }
 });
 
 submissions.on('child_removed', function(data) {
   if (data.child('names').exists()) {
-    updateAmountOfSubmissions(-data.child('names').val().filter(function(n) { return n.length > 0 }).length);
+    var names = data.child('names').val();
+    var filledNames = names.filter(function(n) { return n.length > 0 });
+    updateAmountOfSubmissions(-filledNames.length);
   }
 });
 

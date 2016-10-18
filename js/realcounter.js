@@ -8,16 +8,23 @@ var config = {
 firebase.initializeApp(config);
 
 var db = firebase.database();
-var submissions = db.ref('/submissions')
+var submissions = db.ref('/submissionCounts')
 var $div = $('#students');
 window.all = [];
 window.grouped = {};
 
 window.excludeName = ["Keukerol", "Bloem"]
 
+var subm = 0;
 submissions.on('child_added', function(data) {
+  subm++;
   var counter = 0;
-  if (data.child('names').exists()) {
+  var key = data.key;
+  if (data.child('namesCount').exists()) {
+    counter = data.child('namesCount').val();
+    updateAmountOfSubmissions(counter);
+  }
+  else if (data.child('names').exists()) {
     counter = data.child('names').val().filter(function(n) {
       var add = n.length > 0;
       if (add && (n.length <= 1 || window.excludeName.indexOf(n) >= 0)) {
@@ -28,15 +35,20 @@ submissions.on('child_added', function(data) {
     }).length;
     updateAmountOfSubmissions(counter);
   }
+
+  // window.all
   var cookie = data.child('cookie').val();
-  var el = { _school: data.child('school').val() };
-  var names = data.child('names').val();
-  if (names[0].length > 0) el.name1 = names[0];
-  if (names[1].length > 0) el.name2 = names[1];
-  if (names[2].length > 0) el.name3 = names[2];
+  var el = { _school: data.child('school').val(), namesCount: counter };
+  if (data.child('names').exists()) {
+    var names = data.child('names').val();
+    if (names[0].length > 0) el.name1 = names[0];
+    if (names[1].length > 0) el.name2 = names[1];
+    if (names[2].length > 0) el.name3 = names[2];
+  }
   el.zCookie = cookie;
   window.all.push(el);
 
+  // window.grouped = cookies
   if (!window.grouped[cookie]) { window.grouped[cookie] = 0 }
   window.grouped[cookie]++;
 });
